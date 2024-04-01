@@ -1,46 +1,49 @@
 package com.github.kay9.itemcapes;
 
-import net.minecraft.client.util.ITooltipFlag;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemGroup;
-import net.minecraft.item.ItemStack;
-import net.minecraft.item.Rarity;
-import net.minecraft.nbt.CompoundNBT;
-import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.SoundEvents;
-import net.minecraft.util.text.ITextComponent;
-import net.minecraft.util.text.StringTextComponent;
-import net.minecraft.util.text.TextFormatting;
-import net.minecraft.util.text.TranslationTextComponent;
-import net.minecraft.world.World;
-import net.minecraftforge.fml.RegistryObject;
-import net.minecraftforge.registries.ForgeRegistries;
+import net.minecraft.world.item.TooltipFlag;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.CreativeModeTab;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Rarity;
+import net.minecraft.nbt.CompoundTag;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.sounds.SoundEvents;
+import net.minecraft.network.chat.Component;
+import net.minecraft.ChatFormatting;
+//import net.minecraftforge.registries.RegistryObject;
+//import net.minecraftforge.registries.ForgeRegistries;
 import top.theillusivec4.curios.api.SlotContext;
 import top.theillusivec4.curios.api.type.capability.ICurio;
 import top.theillusivec4.curios.api.type.capability.ICurioItem;
+import top.theillusivec4.curios.api.type.capability.ICurio.SoundInfo;
+import net.minecraft.world.level.Level;
+//import net.minecraft.world.level.ServerLevelAccessor;
+import net.minecraftforge.registries.ForgeRegistries;
+import net.minecraftforge.registries.RegistryObject;
 
 import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
+//import javax.annotation.Nullable;
 import java.util.List;
+
+
 
 public class CapeItem extends Item implements ICurioItem
 {
-    public static final RegistryObject<Item> ITEM = RegistryObject.of(ItemCapes.id("cape"), ForgeRegistries.ITEMS);
+
 
     public static final String CAPE_TYPE_NBT = "CapeType"; // Key for ResourceLocation
     public static final ResourceLocation DEFAULT_CAPE = ItemCapes.id("textures/red.png");
 
     public CapeItem()
     {
-        super(new Item.Properties().rarity(Rarity.UNCOMMON).stacksTo(1).tab(ItemGroup.TAB_TOOLS));
-        setRegistryName(ITEM.getId());
+        super(new Item.Properties().rarity(Rarity.UNCOMMON).stacksTo(1).tab(CreativeModeTab.TAB_TOOLS));
     }
 
     @Nonnull
     @Override
-    public ICurio.SoundInfo getEquipSound(SlotContext slotContext, ItemStack stack)
+    public SoundInfo getEquipSound(SlotContext slotContext, ItemStack stack)
     {
-        return new ICurio.SoundInfo(SoundEvents.ARMOR_EQUIP_ELYTRA, 1f, 1f);
+        return new SoundInfo(SoundEvents.ARMOR_EQUIP_ELYTRA, 1f, 1f);
     }
 
     @Override
@@ -50,17 +53,17 @@ public class CapeItem extends Item implements ICurioItem
     }
 
     @Override
-    public void appendHoverText(ItemStack stack, @Nullable World level, List<ITextComponent> desc, ITooltipFlag flags)
+    public void appendHoverText(ItemStack stack, Level level, List<Component> desc, TooltipFlag flags)
     {
         String type = "red";
-        CompoundNBT tag = stack.getTag();
+        CompoundTag tag = stack.getTag();
         if (tag != null)
         {
             String string = tag.getString(CAPE_TYPE_NBT);
             if (!string.isEmpty()) type = string;
         }
-        desc.add(new TranslationTextComponent("item.itemcapes.cape.desc").withStyle(TextFormatting.GOLD)
-                .append(new StringTextComponent(": ").withStyle(TextFormatting.AQUA))
-                .append(new StringTextComponent(type.replace('_', ' ')).withStyle(TextFormatting.YELLOW)));
+        desc.add(Component.translatable("item.itemcapes.cape.desc").withStyle(ChatFormatting.GOLD)
+                .append(Component.literal(": ").withStyle(ChatFormatting.AQUA))
+                .append(Component.literal(type.replace('_', ' ')).withStyle(ChatFormatting.YELLOW)));
     }
 }
