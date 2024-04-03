@@ -1,4 +1,4 @@
-package com.github.kay9.itemcapes;
+package com.github.virtualonno.itemcapes;
 
 import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.item.Item;

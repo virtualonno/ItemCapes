@@ -1,8 +1,8 @@
-package com.github.kay9.itemcapes.mixins.client;
+package com.github.virtualonno.itemcapes.mixins.client;
 
-import com.github.kay9.itemcapes.CapeItem;
-import com.github.kay9.itemcapes.ItemCapes;
-import com.github.kay9.itemcapes.client.CapeTextureRegistrar;
+import com.github.virtualonno.itemcapes.CapeItem;
+import com.github.virtualonno.itemcapes.CapeTextureRegistrar;
+import com.github.virtualonno.itemcapes.ItemCapes;
 import com.mojang.authlib.GameProfile;
 
 import net.minecraft.client.player.AbstractClientPlayer;
@@ -56,6 +56,7 @@ public AbstractClientPlayerEntityMixin(Level level, BlockPos blockPos, float f, 
      }
   
      private void findCurio(CallbackInfoReturnable<ResourceLocation> cir, boolean elytra) {
+      //deprecated method, use getCuriosInventory for 1.20+ instead
         CuriosApi.getCuriosHelper().findEquippedCurio(CAPE.get(), (AbstractClientPlayer) (Object) this).map(t -> {
            ItemStack stack = (ItemStack)t.getRight();
            CompoundTag tag = stack.getTag();

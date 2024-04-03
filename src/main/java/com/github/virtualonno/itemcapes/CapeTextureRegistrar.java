@@ -1,6 +1,5 @@
-package com.github.kay9.itemcapes.client;
+package com.github.virtualonno.itemcapes;
 
-import com.github.kay9.itemcapes.ItemCapes;
 import java.io.File;
 import java.io.FileFilter;
 import java.io.FileInputStream;

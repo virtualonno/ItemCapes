@@ -1,12 +1,8 @@
-package com.github.kay9.itemcapes;
+package com.github.virtualonno.itemcapes;
 
-// import com.github.kay9.itemcapes.recipe.ShapedCapeRecipe;
-// import com.github.kay9.itemcapes.recipe.ShapelessCapeRecipe;
-import com.github.kay9.itemcapes.client.CapeTextureRegistrar;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.texture.DynamicTexture;
 
-import com.github.kay9.itemcapes.client.CapeTextureRegistrar;
 import com.mojang.blaze3d.platform.NativeImage;
 import net.minecraft.world.item.Item;
 //import net.minecraft.world.item.crafting.RecipeSerializer;
