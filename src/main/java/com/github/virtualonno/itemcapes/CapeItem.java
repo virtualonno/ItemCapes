@@ -1,5 +1,7 @@
 package com.github.virtualonno.itemcapes;
 
+import com.github.virtualonno.itemcapes.Curios;
+
 import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.CreativeModeTab;
@@ -30,13 +32,9 @@ import java.util.List;
 public class CapeItem extends Item implements ICurioItem
 {
 
-
-    public static final String CAPE_TYPE_NBT = "CapeType"; // Key for ResourceLocation
-    public static final ResourceLocation DEFAULT_CAPE = ItemCapes.id("textures/red.png");
-
-    public CapeItem()
+    public CapeItem(Item.Properties Properties)
     {
-        super(new Item.Properties().rarity(Rarity.UNCOMMON).stacksTo(1).tab(CreativeModeTab.TAB_TOOLS));
+        super(Properties);
     }
 
     @Nonnull
@@ -52,18 +50,4 @@ public class CapeItem extends Item implements ICurioItem
         return true;
     }
 
-    @Override
-    public void appendHoverText(ItemStack stack, Level level, List<Component> desc, TooltipFlag flags)
-    {
-        String type = "red";
-        CompoundTag tag = stack.getTag();
-        if (tag != null)
-        {
-            String string = tag.getString(CAPE_TYPE_NBT);
-            if (!string.isEmpty()) type = string;
-        }
-        desc.add(Component.translatable("item.itemcapes.cape.desc").withStyle(ChatFormatting.GOLD)
-                .append(Component.literal(": ").withStyle(ChatFormatting.AQUA))
-                .append(Component.literal(type.replace('_', ' ')).withStyle(ChatFormatting.YELLOW)));
-    }
 }

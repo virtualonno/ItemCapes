@@ -1,6 +1,6 @@
 {
   "parent": "minecraft:item/generated",
   "textures": {
-    "layer0": "itemcapes:item/red"
+    "layer0": "itemcapes:item/remilia_black_ops_cape"
   }
 }

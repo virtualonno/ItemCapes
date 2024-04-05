@@ -1,4 +1,8 @@
 {
   "replace": "false",
-  "values": ["itemcapes:cape"]
+  "values": [
+  "itemcapes:red_cape",
+  "itemcapes:mojang_cape",
+  "itemcapes:remilia_black_ops_cape"
+  ]
 }

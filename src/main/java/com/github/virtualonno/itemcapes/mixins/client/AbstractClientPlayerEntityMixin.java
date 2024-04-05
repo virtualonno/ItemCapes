@@ -24,6 +24,8 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 import org.spongepowered.asm.mixin.injection.callback.LocalCapture;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 
 
@@ -47,27 +49,22 @@ public AbstractClientPlayerEntityMixin(Level level, BlockPos blockPos, float f, 
     private void redirectCapeTexture(CallbackInfoReturnable<ResourceLocation> cir)
     {
         //cir.setReturnValue(CapeTextureRegistrar.DEFAULT_CAPE);
-        this.findCurio(cir, false);
+        this.findCurio(cir);
     }
 
-    @Inject(method = "getCloakTextureLocation", at = @At("HEAD"), cancellable = true)
+    @Inject(method = "getElytraTextureLocation", at = @At("HEAD"), cancellable = true)
     private void redirectElytraTexture(CallbackInfoReturnable<ResourceLocation> cir) {
-        this.findCurio(cir, true);
+        this.findCurio(cir);
      }
   
-     private void findCurio(CallbackInfoReturnable<ResourceLocation> cir, boolean elytra) {
+     private void findCurio(CallbackInfoReturnable<ResourceLocation> cir) {
       //deprecated method, use getCuriosInventory for 1.20+ instead
-        CuriosApi.getCuriosHelper().findEquippedCurio(CAPE.get(), (AbstractClientPlayer) (Object) this).map(t -> {
+      //item -> ForgeRegistries.ITEMS.getKey(item.getItem()).getNamespace().equals("itemcapes")
+        CuriosApi.getCuriosHelper().findEquippedCurio(item -> item.getItem() instanceof CapeItem, (AbstractClientPlayer) (Object) this).map(t -> {
            ItemStack stack = (ItemStack)t.getRight();
-           CompoundTag tag = stack.getTag();
-           if (tag != null) {
-              String type = tag.getString("CapeType");
-              if (!type.isEmpty()) {
-                 return CapeTextureRegistrar.get(type, elytra);
-              }
-           }
-  
-           return CapeTextureRegistrar.DEFAULT_CAPE;
+           String name = ForgeRegistries.ITEMS.getKey(stack.getItem()).getPath();
+            return CapeTextureRegistrar.get(name);
+
         }).ifPresent(cir::setReturnValue);
      }
 

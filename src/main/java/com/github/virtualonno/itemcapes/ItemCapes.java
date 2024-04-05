@@ -2,6 +2,7 @@ package com.github.virtualonno.itemcapes;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.texture.DynamicTexture;
+import com.github.virtualonno.itemcapes.registries.ItemRegistry;
 
 import com.mojang.blaze3d.platform.NativeImage;
 import net.minecraft.world.item.Item;
@@ -41,35 +42,36 @@ import java.nio.file.Path;
 public class ItemCapes
 {
     public static final String MODID = "itemcapes";
-    public static final String CURIOS_MODID = "curios";
 
     public static final Logger LOG = LogManager.getLogger(MODID);
 
-    private static final DeferredRegister<Item> ITEMS = DeferredRegister.create(ForgeRegistries.ITEMS, MODID);
-    public static final RegistryObject<Item> CAPE_ITEM = ITEMS.register("cape", () -> new CapeItem());
-
     public ItemCapes()
     {
-        IEventBus bus = FMLJavaModLoadingContext.get().getModEventBus();
+        IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
+        ItemRegistry.register(modEventBus);
 
         //bus.addGenericListener(Item.class, (RegisterEvent e) -> e.register(new CapeItem()));
-        ITEMS.register(FMLJavaModLoadingContext.get().getModEventBus());
         // bus.addGenericListener(IRecipeSerializer.class, (RegistryEvent.Register<IRecipeSerializer<?>> e) -> e.getRegistry().register(new ShapelessCapeRecipe.Serializer()));
         // bus.addGenericListener(IRecipeSerializer.class, (RegistryEvent.Register<IRecipeSerializer<?>> e) -> e.getRegistry().register(new ShapedCapeRecipe.Serializer()));
-        bus.addListener((InterModEnqueueEvent e) -> InterModComms.sendTo(CURIOS_MODID, SlotTypeMessage.REGISTER_TYPE, () ->
-                new SlotTypeMessage.Builder("cape").build()));
+
         if (FMLLoader.getDist().isClient()) {
-            bus.addListener(CapeTextureRegistrar::registerCapeTextures);
+            modEventBus.addListener(CapeTextureRegistrar::registerCapeTextures);
         }
 
         ModLoadingContext.get().registerConfig(ModConfig.Type.CLIENT, Config.SPEC);
+
+        FMLJavaModLoadingContext.get().getModEventBus().addListener(this::enqueueIMC);
     }
 
 
 
-    public static ResourceLocation id(String path)
-    {
-        return new ResourceLocation(MODID, path);
+    // public static ResourceLocation id(String path)
+    // {
+    //     return new ResourceLocation(MODID, path);
+    // }
+
+    private void enqueueIMC(final InterModEnqueueEvent event) {
+        Curios.registerCurioSlot(Curios.CAPE_SLOT, 1, false, null);
     }
 
     public static class Config {
