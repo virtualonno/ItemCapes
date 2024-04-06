@@ -41,7 +41,8 @@ import java.io.InputStream;
    public static final ResourceLocation DEFAULT_CAPE = new ResourceLocation(ItemCapes.MODID, "textures/capes/red.png");
 
    //private static final ResourceLocation DEFAULT_ELYTRA = new ResourceLocation("textures/entity/elytra.png");
-   private static final ResourceLocation NOOP = new ResourceLocation(ItemCapes.MODID, "blank"); 
+   public static final ResourceLocation NO_CAPE = new ResourceLocation(ItemCapes.MODID, "blank");
+   public static final ResourceLocation VANILLA_ELYTRA = new ResourceLocation("minecraft", "textures/entity/elytra.png"); 
    private static final Map<String, ResourceLocation> TEXTURE_CACHE = new HashMap<>();
    public static final Logger LOG = LogManager.getLogger("itemcapes");
 
@@ -59,25 +60,9 @@ import java.io.InputStream;
 
       //String name = item.getKey().location().getPath();
       ResourceLocation id = new ResourceLocation(ItemCapes.MODID, locationString(name));
- 
-      LOG.info("Item loaded is:" + name);
-      //ResourceManager resourceManager = Minecraft.getInstance().getResourceManager();
-      //try{
-      //Resource resource = resourceManager.getResourceStack(id).get(0);
-      if (id != null) {
-         // Get the input stream
-         //InputStream inputStream = resource.open();
-        // Minecraft.getInstance().getTextureManager().register(id, new DynamicTexture(NativeImage.read(inputStream)));
-         LOG.info("New type registered: " + name);
+         LOG.info("New cape type registered: " + name);
          LOG.info("With id:  " + id);
          TEXTURE_CACHE.put(name, id);
-     } else {
-         // Resource not found
-     }
-//  } catch (IOException e) {
-//      // Handle the IOException
-//      e.printStackTrace();
-//  }
    }
 
    private static String locationString(String name) {
@@ -85,13 +70,9 @@ import java.io.InputStream;
   }
 
    public static ResourceLocation get(String type) {
-         return TEXTURE_CACHE.getOrDefault(type, NOOP);
+         return TEXTURE_CACHE.getOrDefault(type, NO_CAPE);
    }
 
-   private static String[] validTypes = {
-      "mojang",
-      "red"
-   };
 
 
 }

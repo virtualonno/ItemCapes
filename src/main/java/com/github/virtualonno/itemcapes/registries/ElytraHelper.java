@@ -4,6 +4,7 @@ import com.github.virtualonno.itemcapes.ItemCapes;
 import com.github.virtualonno.itemcapes.CapeItem;
 import java.util.Set;
 import java.util.HashSet;
+import java.util.Arrays;
 
 import com.google.common.collect.ImmutableMultimap;
 import net.minecraft.world.effect.MobEffectInstance;
@@ -22,17 +23,14 @@ import java.util.Collection;
 import java.util.Map;
 import java.util.UUID;
 
-public class ItemRegistry {
-    private static final DeferredRegister<Item> ITEMS = DeferredRegister.create(ForgeRegistries.ITEMS, ItemCapes.MODID);
-
-    public static void register(IEventBus eventBus) {
-        ITEMS.register(eventBus);
-    }
-    public static final RegistryObject<Item> RED_CAPE = ITEMS.register("red_cape", () -> new CapeItem(new Item.Properties().rarity(Rarity.UNCOMMON).stacksTo(1).tab(CreativeModeTab.TAB_TOOLS)));
-    public static final RegistryObject<Item> MOJANG_CAPE = ITEMS.register("mojang_cape", () -> new CapeItem(new Item.Properties().rarity(Rarity.UNCOMMON).stacksTo(1).tab(CreativeModeTab.TAB_TOOLS)));
-    public static final RegistryObject<Item> REMILIA_BLACK_OPS_CAPE = ITEMS.register("remilia_black_ops_cape", () -> new CapeItem(new Item.Properties().rarity(Rarity.EPIC).stacksTo(1).tab(CreativeModeTab.TAB_TOOLS)));
-
-    
+public class ElytraHelper {
+    public Set<String> hasElytra = new HashSet<>();
+    private static String[] elytraCapes = {
+    "mojang_cape"
+ };
+ public ElytraHelper() {
+    hasElytra.addAll(Arrays.asList(elytraCapes));
+}
 
 }
 

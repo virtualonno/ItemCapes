@@ -3,6 +3,8 @@ package com.github.virtualonno.itemcapes.mixins.client;
 import com.github.virtualonno.itemcapes.CapeItem;
 import com.github.virtualonno.itemcapes.CapeTextureRegistrar;
 import com.github.virtualonno.itemcapes.ItemCapes;
+import com.github.virtualonno.itemcapes.registries.ElytraHelper;
+
 import com.mojang.authlib.GameProfile;
 
 import net.minecraft.client.player.AbstractClientPlayer;
@@ -38,6 +40,8 @@ import java.util.Map;
 @Mixin(value = AbstractClientPlayer.class)
 public abstract class AbstractClientPlayerEntityMixin extends Player
 {
+    ElytraHelper elytraHelper = new ElytraHelper();
+    
 public AbstractClientPlayerEntityMixin(Level level, BlockPos blockPos, float f, GameProfile gameProfile, @Nullable ProfilePublicKey profilePublicKey) {
         super(level, blockPos, f, gameProfile, profilePublicKey);
     }
@@ -48,50 +52,40 @@ public AbstractClientPlayerEntityMixin(Level level, BlockPos blockPos, float f, 
     @Inject(method = "getCloakTextureLocation", at = @At("HEAD"), cancellable = true)
     private void redirectCapeTexture(CallbackInfoReturnable<ResourceLocation> cir)
     {
-        //cir.setReturnValue(CapeTextureRegistrar.DEFAULT_CAPE);
-        this.findCurio(cir);
+        this.findCurio(cir, false);
     }
 
     @Inject(method = "getElytraTextureLocation", at = @At("HEAD"), cancellable = true)
     private void redirectElytraTexture(CallbackInfoReturnable<ResourceLocation> cir) {
-        this.findCurio(cir);
+
+        this.findCurio(cir, true);
      }
   
-     private void findCurio(CallbackInfoReturnable<ResourceLocation> cir) {
+     private void findCurio(CallbackInfoReturnable<ResourceLocation> cir, boolean isElytra) {
       //deprecated method, use getCuriosInventory for 1.20+ instead
       //item -> ForgeRegistries.ITEMS.getKey(item.getItem()).getNamespace().equals("itemcapes")
-        CuriosApi.getCuriosHelper().findEquippedCurio(item -> item.getItem() instanceof CapeItem, (AbstractClientPlayer) (Object) this).map(t -> {
-           ItemStack stack = (ItemStack)t.getRight();
-           String name = ForgeRegistries.ITEMS.getKey(stack.getItem()).getPath();
-            return CapeTextureRegistrar.get(name);
-
-        }).ifPresent(cir::setReturnValue);
+        CuriosApi.getCuriosHelper().findEquippedCurio(item -> item.getItem() instanceof CapeItem, (AbstractClientPlayer) (Object) this).ifPresent(t -> {
+            ItemStack stack = (ItemStack)t.getRight();
+            String name = ForgeRegistries.ITEMS.getKey(stack.getItem()).getPath();
+            if(isElytra){
+                if(elytraHelper.hasElytra.contains(name)){
+                    cir.setReturnValue(CapeTextureRegistrar.get(name));
+                }
+                else{
+                    cir.setReturnValue(CapeTextureRegistrar.VANILLA_ELYTRA);
+                };
+            }
+            else{
+                cir.setReturnValue(CapeTextureRegistrar.get(name));
+            };
+        });
      }
 
-    // @Inject(method = "getElytraTextureLocation", at = @At("HEAD"), cancellable = true)
-    // private void redirectElytraTexture(CallbackInfoReturnable<ResourceLocation> cir)
-    // {
-    //     if (ItemCapes.Config.INSTANCE.showOnElytras.get()) findCurio(cir, true);
-    // }
 
-    //private void findCurio(CallbackInfoReturnable<ResourceLocation> cir, boolean elytra)
-   //{
-        // CuriosApi.getCuriosHelper()
-        //         .findEquippedCurio(CAPE.get(), (AbstractClientPlayer) (Object) this)
-        //         .map(t ->
-        //         {
-        //             ItemStack stack = t.getRight();
-        //             CompoundTag tag = stack.getTag();
-        //             if (tag != null)
-        //             {
-        //                 String type = tag.getString(CapeItem.CAPE_TYPE_NBT);
-        //                 if (elytra) type = "elytra_" + type;
-        //                 return TEXTURE_CACHE.computeIfAbsent(type, s -> ResourceLocation.tryParse(ItemCapes.MODID + ":" + s));
-        //             }
-
-                    //return CapeItem.DEFAULT_CAPE;
-                //})
-                //.ifPresent(cir::setReturnValue);
-                
-   // }
 }
+// if(elytraHelper.hasElytra.contains(name)){
+//     //cir.setReturnValue(CapeTextureRegistrar.get(name));
+//     }
+//     else{
+
+//     };
