@@ -26,7 +26,8 @@ import java.util.UUID;
 public class ElytraHelper {
     public Set<String> hasElytra = new HashSet<>();
     private static String[] elytraCapes = {
-    "mojang_cape"
+    "mojang_cape",
+    "remilia_black_ops_cape"
  };
  public ElytraHelper() {
     hasElytra.addAll(Arrays.asList(elytraCapes));
