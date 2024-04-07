@@ -1,6 +1,4 @@
-package com.github.virtualonno.itemcapes;
-
-import com.github.virtualonno.itemcapes.Curios;
+package com.github.virtualonno.miladycapes;
 
 import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.item.Item;
@@ -24,6 +22,9 @@ import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
 
 import javax.annotation.Nonnull;
+
+import com.github.virtualonno.miladycapes.Curios;
+
 //import javax.annotation.Nullable;
 import java.util.List;
 

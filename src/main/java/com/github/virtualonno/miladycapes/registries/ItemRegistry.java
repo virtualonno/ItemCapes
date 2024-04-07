@@ -1,10 +1,10 @@
-package com.github.virtualonno.itemcapes.registries;
+package com.github.virtualonno.miladycapes.registries;
 
-import com.github.virtualonno.itemcapes.ItemCapes;
-import com.github.virtualonno.itemcapes.CapeItem;
 import java.util.Set;
 import java.util.HashSet;
 
+import com.github.virtualonno.miladycapes.CapeItem;
+import com.github.virtualonno.miladycapes.MiladyCapes;
 import com.google.common.collect.ImmutableMultimap;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
@@ -23,7 +23,7 @@ import java.util.Map;
 import java.util.UUID;
 
 public class ItemRegistry {
-    private static final DeferredRegister<Item> ITEMS = DeferredRegister.create(ForgeRegistries.ITEMS, ItemCapes.MODID);
+    private static final DeferredRegister<Item> ITEMS = DeferredRegister.create(ForgeRegistries.ITEMS, MiladyCapes.MODID);
 
     public static void register(IEventBus eventBus) {
         ITEMS.register(eventBus);

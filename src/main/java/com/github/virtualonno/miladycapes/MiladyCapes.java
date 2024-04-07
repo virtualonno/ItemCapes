@@ -1,9 +1,9 @@
-package com.github.virtualonno.itemcapes;
+package com.github.virtualonno.miladycapes;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.texture.DynamicTexture;
-import com.github.virtualonno.itemcapes.registries.ItemRegistry;
 
+import com.github.virtualonno.miladycapes.registries.ItemRegistry;
 import com.mojang.blaze3d.platform.NativeImage;
 import net.minecraft.world.item.Item;
 //import net.minecraft.world.item.crafting.RecipeSerializer;
@@ -38,14 +38,14 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 
-@Mod(ItemCapes.MODID)
-public class ItemCapes
+@Mod(MiladyCapes.MODID)
+public class MiladyCapes
 {
-    public static final String MODID = "itemcapes";
+    public static final String MODID = "miladycapes";
 
     public static final Logger LOG = LogManager.getLogger(MODID);
 
-    public ItemCapes()
+    public MiladyCapes()
     {
         IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
         ItemRegistry.register(modEventBus);

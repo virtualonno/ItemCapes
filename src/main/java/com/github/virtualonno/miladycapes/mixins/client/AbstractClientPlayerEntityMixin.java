@@ -1,10 +1,9 @@
-package com.github.virtualonno.itemcapes.mixins.client;
+package com.github.virtualonno.miladycapes.mixins.client;
 
-import com.github.virtualonno.itemcapes.CapeItem;
-import com.github.virtualonno.itemcapes.CapeTextureRegistrar;
-import com.github.virtualonno.itemcapes.ItemCapes;
-import com.github.virtualonno.itemcapes.registries.ElytraHelper;
-
+import com.github.virtualonno.miladycapes.CapeItem;
+import com.github.virtualonno.miladycapes.CapeTextureRegistrar;
+import com.github.virtualonno.miladycapes.MiladyCapes;
+import com.github.virtualonno.miladycapes.registries.ElytraHelper;
 import com.mojang.authlib.GameProfile;
 
 import net.minecraft.client.player.AbstractClientPlayer;
@@ -47,7 +46,6 @@ public AbstractClientPlayerEntityMixin(Level level, BlockPos blockPos, float f, 
     }
 
     // private static final Map<String, ResourceLocation> TEXTURE_CACHE = new HashMap<>();
-    private static final RegistryObject<Item> CAPE = RegistryObject.create(new ResourceLocation("itemcapes:cape"), ForgeRegistries.ITEMS);
 
     @Inject(method = "getCloakTextureLocation", at = @At("HEAD"), cancellable = true)
     private void redirectCapeTexture(CallbackInfoReturnable<ResourceLocation> cir)
@@ -83,9 +81,3 @@ public AbstractClientPlayerEntityMixin(Level level, BlockPos blockPos, float f, 
 
 
 }
-// if(elytraHelper.hasElytra.contains(name)){
-//     //cir.setReturnValue(CapeTextureRegistrar.get(name));
-//     }
-//     else{
-
-//     };

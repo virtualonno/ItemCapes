@@ -1,4 +1,4 @@
-package com.github.virtualonno.itemcapes;
+package com.github.virtualonno.miladycapes;
 
 import net.minecraft.resources.ResourceLocation;
 import net.minecraftforge.fml.InterModComms;

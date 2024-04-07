@@ -15,8 +15,8 @@ apply plugin: 'eclipse'
 apply plugin: 'org.spongepowered.mixin'
 
 version = '1.1'
-group = 'com.github.virtualonno.itemcapes' // http://maven.apache.org/guides/mini/guide-naming-conventions.html
-archivesBaseName = 'itemcapes'
+group = 'com.github.virtualonno.miladycapes' // http://maven.apache.org/guides/mini/guide-naming-conventions.html
+archivesBaseName = 'miladycapes'
 
 java.toolchain.languageVersion = JavaLanguageVersion.of(17) 
 
@@ -27,10 +27,10 @@ minecraft {
     runs {
         client {
             workingDirectory project.file('run')
-            arg "-mixin.config=itemcapes.mixins.json"
+            arg "-mixin.config=miladycapes.mixins.json"
 
             mods {
-                itemcapes {
+                miladycapes {
                     source sourceSets.main
                 }
             }
@@ -38,10 +38,10 @@ minecraft {
 
         server {
             workingDirectory project.file('run')
-            arg "-mixin.config=itemcapes.mixins.json"
+            arg "-mixin.config=miladycapes.mixins.json"
 
             mods {
-                itemcapes {
+                miladycapes {
                     source sourceSets.main
                 }
             }
@@ -50,10 +50,10 @@ minecraft {
         data {
             workingDirectory project.file('run')
 
-            args '--mod', 'itemcapes', '--all', '--output', file('src/generated/resources/'), '--existing', file('src/main/resources/')
+            args '--mod', 'miladycapes', '--all', '--output', file('src/generated/resources/'), '--existing', file('src/main/resources/')
 
             mods {
-                itemcapes {
+                miladycapes {
                     source sourceSets.main
                 }
             }
@@ -79,8 +79,8 @@ repositories {
 }
 
 mixin {
-    add sourceSets.main, 'itemcapes.mixins.refmap.json'
-    config 'itemcapes.mixins.json'
+    add sourceSets.main, 'miladycapes.mixins.refmap.json'
+    config 'miladycapes.mixins.json'
 
     debug.verbose = true
     debug.export = true
