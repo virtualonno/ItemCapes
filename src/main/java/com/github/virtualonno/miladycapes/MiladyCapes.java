@@ -1,42 +1,17 @@
 package com.github.virtualonno.miladycapes;
-
-import net.minecraft.client.Minecraft;
-import net.minecraft.client.renderer.texture.DynamicTexture;
-
 import com.github.virtualonno.miladycapes.registries.ItemRegistry;
-import com.mojang.blaze3d.platform.NativeImage;
-import net.minecraft.world.item.Item;
-//import net.minecraft.world.item.crafting.RecipeSerializer;
-//import net.minecraft.world.level.block.state.BlockBehaviour;
-import net.minecraft.resources.ResourceLocation;
+
 import net.minecraftforge.common.ForgeConfigSpec;
-import net.minecraftforge.registries.DeferredRegister;
-import net.minecraftforge.registries.ForgeRegistries;
-//import net.minecraftforge.registries.RegisterEvent;
-import net.minecraftforge.registries.RegistryObject;
 import net.minecraftforge.eventbus.api.IEventBus;
-import net.minecraftforge.fml.InterModComms;
 import net.minecraftforge.fml.ModLoadingContext;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.config.ModConfig;
-import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.InterModEnqueueEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import net.minecraftforge.fml.loading.FMLLoader;
-import net.minecraftforge.fml.loading.FMLPaths;
-import org.apache.commons.io.filefilter.WildcardFileFilter;
-import org.apache.commons.lang3.tuple.Pair;
+
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import top.theillusivec4.curios.api.SlotTypeMessage;
-import net.minecraft.server.packs.resources.ReloadableResourceManager; 
-
-import java.io.File;
-import java.io.FileFilter;
-import java.io.FileInputStream;
-import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Path;
 
 @Mod(MiladyCapes.MODID)
 public class MiladyCapes
