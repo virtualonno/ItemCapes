@@ -26,9 +26,11 @@ import org.apache.logging.log4j.LogManager;
 
     public static void registerCapeTextures(FMLClientSetupEvent evt) {
       try {
-            registerTextures("red_cape", ItemRegistry.RED_CAPE);
-            registerTextures("mojang_cape", ItemRegistry.MOJANG_CAPE);
+            registerTextures("copyright_holder_cape", ItemRegistry.COPYRIGHT_HOLDER_CAPE);
+            registerTextures("copyright_holder_cape_old", ItemRegistry.COPYRIGHT_HOLDER_CAPE_OLD);
+            registerTextures("copyright_holder_cape_new", ItemRegistry.COPYRIGHT_HOLDER_CAPE_NEW);
             registerTextures("remilia_black_ops_cape", ItemRegistry.REMILIA_BLACK_OPS_CAPE);
+            registerTextures("christmas_2010_cape", ItemRegistry.REMILIA_BLACK_OPS_CAPE);
       } catch (Throwable var5) {
          LOG.error("Failed to load cape textures for MiladyCapes. Report immediately to author with logs.", var5);
       }

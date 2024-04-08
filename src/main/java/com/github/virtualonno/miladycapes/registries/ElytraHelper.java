@@ -6,13 +6,12 @@ import java.util.Arrays;
 
 
 public class ElytraHelper {
-    public Set<String> hasElytra = new HashSet<>();
+    public Set<String> hasNoElytra = new HashSet<>();
     private static String[] elytraCapes = {
-    "mojang_cape",
-    "remilia_black_ops_cape"
+    "christmas_2010_cape"
  };
  public ElytraHelper() {
-    hasElytra.addAll(Arrays.asList(elytraCapes));
+    hasNoElytra.addAll(Arrays.asList(elytraCapes));
 }
 
 }

@@ -56,7 +56,7 @@ public AbstractClientPlayerEntityMixin(Level level, BlockPos blockPos, float f, 
             ItemStack stack = (ItemStack)t.getRight();
             String name = ForgeRegistries.ITEMS.getKey(stack.getItem()).getPath();
             if(isElytra){
-                if(elytraHelper.hasElytra.contains(name)){
+                if(!elytraHelper.hasNoElytra.contains(name)){
                     cir.setReturnValue(CapeTextureRegistrar.get(name));
                 }
                 else{

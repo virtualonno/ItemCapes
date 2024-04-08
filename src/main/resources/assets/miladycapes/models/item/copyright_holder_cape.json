@@ -1,6 +1,6 @@
 {
   "parent": "minecraft:item/generated",
   "textures": {
-    "layer0": "miladycapes:item/red_cape_item"
+    "layer0": "miladycapes:item/copyright_holder_cape_item"
   }
 }
