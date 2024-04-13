@@ -23,6 +23,12 @@ public class ItemRegistry {
    
     public static final RegistryObject<Item> CHRISTMAS_2010_CAPE = ITEMS.register("christmas_2010_cape", () -> new CapeItem(new Item.Properties().rarity(Rarity.EPIC).stacksTo(1).tab(CreativeModeTab.TAB_TOOLS)));
 
+    public static final RegistryObject<Item> CONVENTION_2011_CAPE = ITEMS.register("convention_2011_cape", () -> new CapeItem(new Item.Properties().rarity(Rarity.RARE).stacksTo(1).tab(CreativeModeTab.TAB_TOOLS)));
+    public static final RegistryObject<Item> CONVENTION_2012_CAPE = ITEMS.register("convention_2012_cape", () -> new CapeItem(new Item.Properties().rarity(Rarity.RARE).stacksTo(1).tab(CreativeModeTab.TAB_TOOLS)));
+    public static final RegistryObject<Item> CONVENTION_2013_CAPE = ITEMS.register("convention_2013_cape", () -> new CapeItem(new Item.Properties().rarity(Rarity.RARE).stacksTo(1).tab(CreativeModeTab.TAB_TOOLS)));
+    public static final RegistryObject<Item> CONVENTION_2015_CAPE = ITEMS.register("convention_2015_cape", () -> new CapeItem(new Item.Properties().rarity(Rarity.RARE).stacksTo(1).tab(CreativeModeTab.TAB_TOOLS)));
+    public static final RegistryObject<Item> CONVENTION_2016_CAPE = ITEMS.register("convention_2016_cape", () -> new CapeItem(new Item.Properties().rarity(Rarity.RARE).stacksTo(1).tab(CreativeModeTab.TAB_TOOLS)));
+
     public static final RegistryObject<Item> REMILIA_BLACK_OPS_CAPE = ITEMS.register("remilia_black_ops_cape", () -> new CapeItem(new Item.Properties().rarity(Rarity.EPIC).stacksTo(1).tab(CreativeModeTab.TAB_TOOLS)));
 
     
