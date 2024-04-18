@@ -1,15 +1,12 @@
 package com.github.virtualonno.miladycapes;
 
-import com.github.virtualonno.miladycapes.registries.ItemRegistry;
-
 import java.util.HashMap;
 import java.util.Map;
 
-import net.minecraft.world.item.*;
 import net.minecraft.resources.ResourceLocation;
 
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
-import net.minecraftforge.registries.RegistryObject;
+
 
 import org.apache.logging.log4j.Logger;
 import org.apache.logging.log4j.LogManager;
@@ -26,18 +23,15 @@ import org.apache.logging.log4j.LogManager;
 
     public static void registerCapeTextures(FMLClientSetupEvent evt) {
       try {
-            registerTextures("copyright_holder_cape", ItemRegistry.COPYRIGHT_HOLDER_CAPE);
-            registerTextures("copyright_holder_cape_old", ItemRegistry.COPYRIGHT_HOLDER_CAPE_OLD);
-            registerTextures("copyright_holder_cape_new", ItemRegistry.COPYRIGHT_HOLDER_CAPE_NEW);
-            registerTextures("remilia_black_ops_cape", ItemRegistry.REMILIA_BLACK_OPS_CAPE);
-            registerTextures("christmas_2010_cape", ItemRegistry.REMILIA_BLACK_OPS_CAPE);
-            registerTextures("tattered_oldfriend_cape", ItemRegistry.TATTERED_OLDFRIEND_CAPE);
+         for(String name : capeTextureList){
+            registerTextures(name);
+         }
       } catch (Throwable var5) {
          LOG.error("Failed to load cape textures for MiladyCapes. Report immediately to author with logs.", var5);
       }
    }
 
-   private static void registerTextures(String name, RegistryObject<Item> item) {
+   private static void registerTextures(String name) {
 
       //String name = item.getKey().location().getPath();
       ResourceLocation id = new ResourceLocation(MiladyCapes.MODID, locationString(name));
@@ -54,7 +48,19 @@ import org.apache.logging.log4j.LogManager;
          return TEXTURE_CACHE.getOrDefault(type, NO_CAPE);
    }
 
-
+   private static String[] capeTextureList = {
+  "copyright_holder_cape",
+  "copyright_holder_cape_old",
+  "copyright_holder_cape_new",
+  "convention_2011_cape",
+  "convention_2012_cape",
+  "convention_2013_cape",
+  "convention_2015_cape",
+  "convention_2016_cape",
+  "remilia_black_ops_cape",
+  "christmas_2010_cape",
+  "tattered_oldfriend_cape"
+   };
 
 }
 
