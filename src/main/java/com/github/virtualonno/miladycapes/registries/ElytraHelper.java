@@ -7,11 +7,11 @@ import java.util.Arrays;
 
 public class ElytraHelper {
     public Set<String> hasNoElytra = new HashSet<>();
-    private static String[] elytraCapes = {
-    "christmas_2010_cape"
+    private static String[] elytraLessCapes = {
+    "tattered_oldfriend_cape"
  };
  public ElytraHelper() {
-    hasNoElytra.addAll(Arrays.asList(elytraCapes));
+    hasNoElytra.addAll(Arrays.asList(elytraLessCapes));
 }
 
 }
